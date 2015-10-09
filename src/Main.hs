@@ -20,7 +20,7 @@ main = do
         let rh = W.remoteHost req
         let headers = W.requestHeaders req
         let x = getXForwardedFor headers
-        text $ T.pack $ if hasXForwadedFor x then (BC.unpack $ snd $ head x) else (takeWhile (/=':') $ show rh)
+        text $ T.pack $ (if hasXForwadedFor x then (BC.unpack $ snd $ head x) else (takeWhile (/=':') $ show rh)) ++ "\n"
 
   where
     getXForwardedFor :: RequestHeaders -> [Header]
